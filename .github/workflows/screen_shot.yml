@@ -1,0 +1,61 @@
+name: screen_shot
+on: 
+  schedule:
+    - cron: '0 0 * * 0'
+    
+  push:
+    branches: 
+      - main
+
+jobs:
+  screen_shot:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 检查分支
+      uses: actions/checkout@master
+      
+    - name: 安装Node
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: "12.x"
+
+    - name: 缓存依赖
+      uses: actions/cache@v2.1.1
+      id: cache-dependencies
+      with:
+        path: node_modules
+        key: ${{runner.OS}}-${{hashFiles('**/package-lock.json')}}
+
+    - name: 安装依赖
+      if: steps.cache-dependencies.outputs.cache-hit != 'true'
+      run: |
+        npm install
+        npm install gulp gulp-imagemin
+        
+    - name: 安装 Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+        
+    - name: 安装 requests
+      run: pip install requests
+    
+    - name: 执行
+      run: python screen_shot.py
+      
+    - name: 压缩图片
+      run: |
+        gulp   
+        
+    - name: 部署
+      env:
+        TZ: Asia/Shanghai
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./img
+        full_commit_message: 'Updated By Github Actions'
+    
+    - name: 清除缓存
+      run: curl https://purge.jsdelivr.net/gh/${{ github.repository }}@gh-pages/*.*
