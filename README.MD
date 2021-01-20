@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
 - 将`getLinkFriends`函数里的内容替换成你自己的友链页面
 - 将`getGiteeFriends`函数里替换成 `gitee用户名`、`ISSUE仓库`、如果你不使用`Gitee Issue友链`、请将这一行用`#`注释
-- 如果你使用的是其他截图网站 API、`downloadFriends` 第一个参数为截图网站 API、格式类似 `https://image.thum.io/get/width/400/crop/800/allowJPG/wait/20/noanimate/`、第二个参数为下载图片的后缀 (默认 `jpg`), 或者类似 `https://s0.wordpress.com/mshots/v1/https://zykj.js.org?w=1280&h=960` 的 API、第一个参数为截图网站前缀 `https://s0.wordpress.com/mshots/v1/`、第二个参数为截图网站后缀 `?w=1280&h=960`、第三个参数为下载图片的后缀 (默认 `jpg`)
+- 如果你使用的是其他截图网站 API、`downloadFriends` 第一个参数为截图网站 API、格式类似 `https://image.thum.io/get/width/400/crop/800/allowJPG/wait/20/noanimate/`、第二个参数为下载图片的后缀 (默认 `jpg`), 或者类似 `https://s0.wordpress.com/mshots/v1/https://zykj.js.org?w=1280&h=960` 的 API、第一个参数为截图网站前缀 `https://s0.wordpress.com/mshots/v1/https://`、第二个参数为截图网站后缀 `?w=1280&h=960`、第三个参数为下载图片的后缀 (默认 `jpg`)
 
 修改完成你的配置、就可以在Action查看是否运行成功
 
@@ -67,7 +67,7 @@ pjax:
 针对旧版 ：https://cdn.jsdelivr.net/gh/zykjofficial/zykjofficial.github.io@master/js/Friend_old.js
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/zykjofficial/zykjofficial.github.io@master/js/Friend.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/zykjofficial/zykjofficial.github.io@master/js/Friend_old.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/zykjofficial-actions/screen_shot@main/screen_shot.js"></script>
 <script>
     let fElement = document.createElement("div");
@@ -98,10 +98,9 @@ pjax:
 </script>
 ```
 
-针对新版：
+针对新版：https://cdn.jsdelivr.net/gh/zykjofficial/zykjofficial.github.io@master/js/Friend.js 由本人魔改、去除了Jquery
 
 ```html
-<script src='https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js'></script>
 <script src='https://cdn.jsdelivr.net/gh/zykjofficial/zykjofficial.github.io@master/js/Friend.js'></script>
 <script src="https://cdn.jsdelivr.net/gh/zykjofficial/zykjofficial.github.io@master/js/screen_shot.js"></script>
 <script>
@@ -119,7 +118,7 @@ pjax:
         "Butterfly主题":"主题官网: <a link='https://butterfly.js.org'>https://butterfly.js.org</a> ",
     }
   };
-  $('.flink').prepend("<div id='friend1'></div>")
+  document.querySelector('.flink').insertAdjacentHTML('afterbegin', "<div id='friend1'></div>")
   new Friend(obj)
   getFriendsScreenShot({
     user: "zykjofficial-actions", // github用户名

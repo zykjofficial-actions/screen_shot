@@ -58,4 +58,6 @@ jobs:
         full_commit_message: 'Updated By Github Actions'
     
     - name: 清除缓存
-      run: curl https://purge.jsdelivr.net/gh/${{ github.repository }}@gh-pages/*.*
+      run: |
+        curl https://purge.jsdelivr.net/gh/${{ github.repository }}@gh-pages/*.*
+        curl https://purge.jsdelivr.net/gh/${{ github.repository }}@main/*.*
