@@ -8,13 +8,13 @@
 
 使用`Python`获取`博客的友链`和`Gitee Issue的友链`并且截图
 
-`Gitee Issue友链教程`：https://www.tzki.cn/posts/e01152f6/index.html
+`Gitee Issue友链教程`：https://www.tzki.cn/posts/e01152f6/index.html (旧版)  https://www.yuque.com/kdoc/bf/friend (新版)
 
 效果：
 
 ![](https://cdn.jsdelivr.net/gh/zykjofficial-actions/screen_shot@main/screen_shot.gif)
 
-欢迎访问我的 [博客](https://blog.zykjofficial.top/link/) 查看效果
+欢迎访问我的 [博客](https://zykj.js.org/link/) 查看效果
 
 ## 原理
 
@@ -98,10 +98,10 @@ pjax:
 </script>
 ```
 
-针对新版：https://cdn.jsdelivr.net/gh/zykjofficial/zykjofficial.github.io@master/js/Friend.js 由本人魔改、去除了Jquery
+针对新版：https://cdn.jsdelivr.net/npm/butterfly-friend@latest/dist/friend.min.js
 
 ```html
-<script src='https://cdn.jsdelivr.net/gh/zykjofficial/zykjofficial.github.io@master/js/Friend.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/butterfly-friend@latest/dist/friend.min.js'></script>
 <script src="https://cdn.jsdelivr.net/gh/zykjofficial/zykjofficial.github.io@master/js/screen_shot.js"></script>
 <script>
   var obj = {
