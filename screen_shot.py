@@ -28,7 +28,7 @@ def getGiteeFriends(user, repo):
     for gitee_link in gitee_links:
         try:
             if gitee_link['labels']:
-                link = re.findall(re.compile('//(?:[-\w.]|(?:%[\da-fA-F]{2}))+'), gitee_link['body'])[0]
+                link = re.findall(re.compile('//(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'), gitee_link['body'])[0]
                 links.append(link)
         except Exception:
             raise Exception('Gitee友链格式错误,请检查格式！！！')
@@ -44,10 +44,10 @@ def downloadFriends(url_prefix="https://image.thum.io/get/width/400/crop/800/all
     """
     # 去除 /
     for i in range(0, len(links)):
-        links[i] = links[i].replace("/","")
+        links[i] = links[i].lstrip('//').rstrip('/')
     os.system("mkdir img")
     for link in links:
-        os.system("curl " + url_prefix + link + url_suffix + " -o ./img/" + link + "." + suffix)
+        os.system("curl " + url_prefix + link + url_suffix + " -o ./img/" + link.replace("/",".") + "." + suffix)
 
 
 if __name__ == '__main__':
