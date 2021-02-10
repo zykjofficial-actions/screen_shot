@@ -13,7 +13,7 @@ def getLinkFriends(link):
 
     :param link: 你的友链地址
     """
-    html = requests.get(url=link).content
+    html = requests.get(url=link,verify=False).content
     links.extend(re.findall(re.compile(r'<a href="https://(.*?)"'), str(html)))
 
 
